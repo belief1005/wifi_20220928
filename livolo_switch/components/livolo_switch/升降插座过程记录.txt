@@ -1,0 +1,1189 @@
+esp-12sÊ¹ÓÃµÄÊÇ4MBµÄFLASH£¬ËùÒÔ½«·ÖÇø±íÐÞ¸ÄÎªÒÔÏÂ´óÐ¡
+
+
+ÒÑ¾­½â¾ö£¬½«fctryÎ»ÖÃ»»µ½ÉÏÃæÈ¥ÁË£¬½â¾öºóµÄ·ÖÇøÈçÏÂ£º
+nvs, data, nvs, 0x9000, 0x4000
+otadata, data, ota, 0xd000, 0x2000
+phy_init, data, phy, 0xf000, 0x1000
+fctry, data, nvs, 0x10000,0x4000
+ota_0, 0, ota_0, 0x14000, 0x1F6000
+ota_1, 0, ota_1, 0x20A000,0x1F6000
+
+
+nvs,      data, nvs,     0x9000,  0x4000
+otadata,  data, ota,     0xd000,  0x2000
+phy_init, data, phy,     0xf000,  0x1000
+ota_0,    0,    ota_0,   0x10000, 0xF0000
+fctry,    data, nvs,     0x100000,0x4000
+ota_1,    0,    ota_1,   0x110000,0xF0000
+
+
+
+CountDownList: {
+"Target": "SocketPowerState",
+"Contents": "SocketPowerState-1-1-123-1535644800000"
+}
+
+
+
+³ÌÐòÉÕÂ¼
+
+¹Ì¼þ°æ±¾ºÅÐÞ¸Ä£ºComponent config  --->  iotkit embedded  --->   Aliyun linkkit device version  --->  
+
+
+python /home/book/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool/esptool.py 
+--chip esp8266 
+--port /dev/ttyUSB0 
+--baud 230400 
+--before default_reset 
+--after hard_reset write_flash -z 
+--flash_mode dout --flash_freq 40m 
+--flash_size 4MB 
+
+0xd000  /home/book/esp/esp-ali-smartliving-master/examples/solutions/smart_light2/build/ota_data_initial.bin 
+0x0000  /home/book/esp/esp-ali-smartliving-master/examples/solutions/smart_light2/build/bootloader/bootloader.bin 
+0x10000 /home/book/esp/esp-ali-smartliving-master/examples/solutions/smart_light2/build/smart_light.bin 
+0x8000  /home/book/esp/esp-ali-smartliving-master/examples/solutions/smart_light2/build/partitions_esp8266.bin
+
+
+
+ ets Jan  8 2013,rst cause:2, boot mode:(3,0)
+
+load 0x40100000, len 6532, room 16 
+tail 4
+chksum 0x26
+load 0x3ffe8408, len 24, room 4 
+tail 4
+chksum 0xcf
+load 0x3ffe8420, len 2660, room 4 
+tail 0
+chksum 0x8e
+csum 0x8e?[0;31mE (387) boot: ERROR: app bin error, start_addr 20a000 image_len 784624
+[0m
+
+
+
+# Name,   Type, SubType, Offset,   Size, Flags
+# Note: if you change the phy_init or app partition offset, make sure to change the offset in Kconfig.projbuild
+nvs, data, nvs, 0x9000, 0x4000
+otadata, data, ota, 0xd000, 0x2000
+phy_init, data, phy, 0xf000, 0x1000
+fctry, data, nvs, 0x10000,0x4000
+ota_0, 0, ota_0, 0x14000, 0x1F6000
+ota_1, 0, ota_1, 0x20A000,0x1F6000
+
+
+
+nvs,      data, nvs,     0x9000,  0x4000
+otadata,  data, ota,     0xd000,  0x2000
+phy_init, data, phy,     0xf000,  0x1000
+ota_0,    0,    ota_0,   0x10000, 0xF0000
+fctry,    data, nvs,     0x100000,0x4000
+ota_1,    0,    ota_1,   0x110000,0xF0000
+
+
+
+
+smart_light¹¤³ÌÏÂµÄotaÄÚ²¿ÒÑ¾­¼¯³É£¬²»ÐèÒªÁíÍâÌí¼Ó
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[0;32mI (312596) wifi: state: 5 -> 2 (1a0)[0m
+[0;32mI (312599) wifi: pm stop[0m
+[0;31mE (312603) conn_mgr: Disconnect reason : 1[0m
+[0;31mE (312609) iot_import_tls: ssl_poll_read select error 113, errno = Software caused connection abort, fd = 1[0m
+[1;31m[err](312141) IOT_MQTT_Yield(3239): error occur rc=-14
+
+[0m[1;31m[err](312143) iotx_mc_keepalive(2619): network is disconnected!
+
+[0m[1;33m[inf](312153) iotx_cloud_conn_mqtt_event_handle(87): disconnected,fd = 0
+
+[0m[1;33m[inf](312164) _dm_client_event_cloud_disconnect_handle(148): IOTX_CM_EVENT_CLOUD_DISCONNECT
+
+[0m[1;31m[err](312191) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;31mE (312728) conn_mgr: Disconnect reason : 201[0m
+[1;33m[inf](312292) _iotx_linkkit_event_callback(237): Receive Message Type: 1
+
+[0m[1;31m[err](312401) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](312614) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](312826) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](313039) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](313253) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](313255) iotx_mc_handle_reconnect(2817): start to reconnect
+
+[0m[1;33m[inf](313261) iotx_guider_authenticate(1282): dyna url:a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com count:1
+
+[0m.................................
+
+   PK : a1yJAmJczNk
+
+   DN : 0OxZRyu7rXouemEUHJV4
+
+   DS : 373dffd3a0
+
+  PID : espressif
+
+  MID : wroom
+
+   SM : TLS + Direct
+
+   TS : 2524608000000
+
+.................................
+
+.................................
+
+      Host : a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com
+
+      Port : 443
+
+  ClientID : a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-ilop,_fy=1.6.0,_ss=1|
+
+        CA : ('... HMUfpIBvFSDJ3gyI ...')
+
+.................................
+
+[1;33m[inf](313364) iotx_mc_attempt_reconnect(2787): reconnect params: MQTTVersion=4, clientID=a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-il ...
+
+[0m[0;31mE (315153) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (317576) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (319999) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (320339) esp-tls: couldn't get hostname for :a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com:[0m
+[0;31mE (320344) esp-tls: Failed to open new connection[0m
+[1;31m[err](319868) iotx_mc_connect(2714): TCP or TLS Connection failed
+
+[0m[1;31m[err](319879) iotx_mc_attempt_reconnect(2793): run iotx_mqtt_connect() error!
+
+[0m[1;31m[err](319891) iotx_mc_handle_reconnect(2847): mqtt reconnect failed rc = -28
+
+[0m[1;31m[err](320007) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](320219) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](320432) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](320646) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](320859) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](321069) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](321280) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](321490) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](321702) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](321912) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;31mE (322427) conn_mgr: Disconnect reason : 201[0m
+[1;31m[err](322123) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](322333) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](322545) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](322759) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](322761) iotx_mc_handle_reconnect(2817): start to reconnect
+
+[0m[1;33m[inf](322767) iotx_guider_authenticate(1282): dyna url:a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com count:2
+
+[0m.................................
+
+   PK : a1yJAmJczNk
+
+   DN : 0OxZRyu7rXouemEUHJV4
+
+   DS : 373dffd3a0
+
+  PID : espressif
+
+  MID : wroom
+
+   SM : TLS + Direct
+
+   TS : 2524608000000
+
+.................................
+
+.................................
+
+      Host : a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com
+
+      Port : 443
+
+  ClientID : a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-ilop,_fy=1.6.0,_ss=1|
+
+        CA : ('... HMUfpIBvFSDJ3gyI ...')
+
+.................................
+
+[1;33m[inf](322870) iotx_mc_attempt_reconnect(2787): reconnect params: MQTTVersion=4, clientID=a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-il ...
+
+[0m[0;31mE (324852) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (327275) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (329697) conn_mgr: Disconnect reason : 201[0m
+[0;31mE (330388) esp-tls: couldn't get hostname for :a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com:[0m
+[0;31mE (330393) esp-tls: Failed to open new connection[0m
+[1;31m[err](329918) iotx_mc_connect(2714): TCP or TLS Connection failed
+
+[0m[1;31m[err](329929) iotx_mc_attempt_reconnect(2793): run iotx_mqtt_connect() error!
+
+[0m[1;31m[err](329941) iotx_mc_handle_reconnect(2847): mqtt reconnect failed rc = -28
+
+[0m[1;31m[err](330055) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](330265) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](330475) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](330687) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](330897) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](331108) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](331319) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](331529) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;31mE (332124) conn_mgr: Disconnect reason : 201[0m
+[1;31m[err](331741) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](331951) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](332163) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](332377) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](332588) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](332802) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](333015) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](333225) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](333436) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](333646) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](333857) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;31mE (334552) conn_mgr: Disconnect reason : 201[0m
+[1;31m[err](334074) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;32mI (334677) wifi: state: 2 -> 2 (b0)[0m
+[1;31m[err](334279) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](334489) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](334699) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](334909) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](335119) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[0;32mI (335680) wifi: state: 2 -> 0 (200)[0m
+[0;31mE (335683) conn_mgr: Disconnect reason : 2[0m
+[0;32mI (335808) wifi: state: 0 -> 2 (b0)[0m
+[1;31m[err](335329) IOT_MQTT_Yield(3239): [0;32mI (335815) wifi: state: 2 -> 3 (0)[0m
+error occur rc=-27
+
+[0m[0;32mI (335826) wifi: state: 3 -> 5 (10)[0m
+[0;32mI (335829) wifi: pm start, type: 2[0m
+[1;31m[err](335539) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](335750) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](335960) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](336170) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](336380) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](336590) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](336800) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](337010) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](337220) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](337430) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](337530) iotx_mc_handle_reconnect(2817): start to reconnect
+
+[0m[1;33m[inf](337537) iotx_guider_authenticate(1282): dyna url:a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com count:3
+
+[0m.................................
+
+   PK : a1yJAmJczNk
+
+   DN : 0OxZRyu7rXouemEUHJV4
+
+   DS : 373dffd3a0
+
+  PID : espressif
+
+  MID : wroom
+
+   SM : TLS + Direct
+
+   TS : 2524608000000
+
+.................................
+
+.................................
+
+      Host : a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com
+
+      Port : 443
+
+  ClientID : a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-ilop,_fy=1.6.0,_ss=1|
+
+        CA : ('... HMUfpIBvFSDJ3gyI ...')
+
+.................................
+
+[1;33m[inf](337633) iotx_mc_attempt_reconnect(2787): reconnect params: MQTTVersion=4, clientID=a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-il ...
+
+[0m[0;31mE (342389) wrapper_kv: Set stassid blob value[0m
+[0;31mE (342394) wrapper_kv: Set pswd blob value[0m
+[0;31mE (344411) esp-tls: couldn't get hostname for :a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com:[0m
+[0;31mE (344416) esp-tls: Failed to open new connection[0m
+[1;31m[err](343941) iotx_mc_connect(2714): TCP or TLS Connection failed
+
+[0m[1;31m[err](343952) iotx_mc_attempt_reconnect(2793): run iotx_mqtt_connect() error!
+
+[0m[1;31m[err](343964) iotx_mc_handle_reconnect(2847): mqtt reconnect failed rc = -28
+
+[0m[1;31m[err](344076) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](344286) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](344496) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](344706) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](344917) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](345127) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](345337) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](345547) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](345757) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](345967) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](346178) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](346387) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](346597) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](346807) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](347018) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](347228) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](347438) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](347648) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](347858) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](348068) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](348278) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](348488) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](348698) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](348909) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](349119) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](349329) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](349539) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](349749) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](349959) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](350170) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](350379) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](350589) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](350799) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](351010) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](351220) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](351430) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](351640) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](351850) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](352060) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](352270) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](352480) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](352690) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](352901) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](353111) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](353321) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](353531) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](353741) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](353951) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](354163) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](354372) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](354582) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](354792) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](355002) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](355212) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](355422) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](355632) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](355842) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](356052) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](356263) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](356472) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](356682) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](356892) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](357102) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](357312) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](357523) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](357733) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](357943) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](358153) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](358363) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](358573) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](358783) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](358993) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](359203) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](359413) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](359623) IOT_MQTT_Yield(3239): error occur rc=-27
+
+[0m[1;31m[err](359625) iotx_mc_handle_reconnect(2817): start to reconnect
+
+[0m[1;33m[inf](359632) iotx_guider_authenticate(1282): dyna url:a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com count:4
+
+[0m.................................
+
+   PK : a1yJAmJczNk
+
+   DN : 0OxZRyu7rXouemEUHJV4
+
+   DS : 373dffd3a0
+
+  PID : espressif
+
+  MID : wroom
+
+   SM : TLS + Direct
+
+   TS : 2524608000000
+
+.................................
+
+.................................
+
+      Host : a1yJAmJczNk.iot-as-mqtt.ap-southeast-1.aliyuncs.com
+
+      Port : 443
+
+  ClientID : a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-ilop,_fy=1.6.0,_ss=1|
+
+        CA : ('... HMUfpIBvFSDJ3gyI ...')
+
+.................................
+
+[1;33m[inf](359735) iotx_mc_attempt_reconnect(2787): reconnect params: MQTTVersion=4, clientID=a1yJAmJczNk.0OxZRyu7rXouemEUHJV4|securemode=2,tokenType=0,token=3C56EF38041F4E6751944EF51709BCDE,_v=sdk-c-2.3.0_FY_1.6.0,timestamp=2524608000000,signmethod=hmacsha1,lan=C,pid=espressif,mid=wroom,authtype=custom-il ...
+
+[0m[1;33m[inf](362763) iotx_mc_connect(2769): mqtt connect success!
+
+[0m[1;31m[err](362765) iotx_mc_keepalive(2609): network is reconnected!
+
+[0m[1;33m[inf](362767) iotx_cloud_conn_mqtt_event_handle(98): connected,fd = 0
+
+[0m[1;33m[inf](362778) _dm_client_event_cloud_connected_handle(142): IOTX_CM_EVENT_CLOUD_CONNECTED
+
+[0m[1;33m[inf](362792) _iotx_linkkit_event_callback(237): Receive Message Type: 0
+
+[0m[1;33m[inf](362804) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"83","version":"1.0","params":{"WifiName":"hetianqi"},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](362843) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](362847) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"84","version":"1.0","params":{"Version":"app-1.0.0"},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](362941) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](362946) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"85","version":"1.0","params":{"MacAddress":"8c:ce:4e:d3:f7:4d"},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](363079) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](363085) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"86","version":"1.0","params":{"IPAddress":"192.168.137.79"},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](363215) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](365601) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"87","version":"1.0","params":{"WiFiRSSI":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](365622) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](365626) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"88","version":"1.0","params":{"SocketPowerState":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](365782) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](365785) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"89","version":"1.0","params":{"powerstate":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](365910) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](365923) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](365950) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](365969) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](365989) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](366012) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](366031) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](366049) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](366112) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366114) _iotx_linkkit_event_callback(239): Receive Message: {"id":83,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366130) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366136) _iotx_linkkit_event_callback(239): Receive Message: {"id":84,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366158) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366164) _iotx_linkkit_event_callback(239): Receive Message: {"id":85,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366186) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366192) _iotx_linkkit_event_callback(239): Receive Message: {"id":86,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366215) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366220) _iotx_linkkit_event_callback(239): Receive Message: {"id":87,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366243) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366248) _iotx_linkkit_event_callback(239): Receive Message: {"id":88,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](366270) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](366276) _iotx_linkkit_event_callback(239): Receive Message: {"id":89,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](382434) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](382440) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/service/property/set_reply, Payload: {"id":"463245478","code":200,"data":{}}
+
+[0m[1;33m[inf](382462) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](382525) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](382527) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"powerstate":1},"msgid":463245478}
+
+[0m[1;33m[inf](382548) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"90","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](382601) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](382632) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"91","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](382693) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](382698) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"92","version":"1.0","params":{"AutoSocketSta":7},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](382729) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](382824) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](382827) _iotx_linkkit_event_callback(239): Receive Message: {"id":90,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](382839) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](382846) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"93","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}[1;33m[inf](382875) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m
+
+[0m[1;33m[inf](382911) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](382915) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"94","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](382946) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](383049) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](383053) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"95","version":"1.0","params":{"cmdDown":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](383074) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](383085) _iotx_linkkit_event_callback(239): Receive Message: {"id":91,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](383107) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](383113) _iotx_linkkit_event_callback(239): Receive Message: {"id":92,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](383148) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](383158) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](383180) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](383295) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](383337) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](383339) _iotx_linkkit_event_callback(239): Receive Message: {"id":93,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](383355) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](383361) _iotx_linkkit_event_callback(239): Receive Message: {"id":94,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](383383) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](383389) _iotx_linkkit_event_callback(239): Receive Message: {"id":95,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](387040) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](387046) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/service/property/set_reply, Payload: {"id":"500737596","code":200,"data":{}}
+
+[0m[1;33m[inf](387071) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387215) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](387217) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"powerstate":0},"msgid":500737596}
+
+[0m[1;33m[inf](387238) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"96","version":"1.0","params":{"powerstate":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387267) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387334) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"97","version":"1.0","params":{"powerstate":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387375) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387379) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"98","version":"1.0","params":{"powerstate":0},"method":"thing.event.property.post"}[1;33m[inf](387400) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m
+
+[0m[1;33m[inf](387478) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387481) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](387483) _iotx_linkkit_event_callback(239): Receive Message: {"id":96,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](387500) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"99","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387532) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](387599) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387604) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"100","version":"1.0","params":{"AutoSocketSta":3},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387635) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](387712) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387716) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"101","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387736) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](387748) _iotx_linkkit_event_callback(239): Receive Message: {"id":97,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](387770) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](387776) _iotx_linkkit_event_callback(239): Receive Message: {"id":98,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](387808) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](387824) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387828) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"102","version":"1.0","params":{"cmdDown":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387859) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](387939) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](387945) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"103","version":"1.0","params":{"AutoSocketSta":5},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](387970) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](388069) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](388073) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"104","version":"1.0","params":{"cmdDown":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](388093) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388104) _iotx_linkkit_event_callback(239): Receive Message: {"id":99,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388126) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388132) _iotx_linkkit_event_callback(239): Receive Message: {"id":100,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388155) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388161) _iotx_linkkit_event_callback(239): Receive Message: {"id":101,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388201) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](388205) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"105","version":"1.0","params":{"SocketPowerState":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](388226) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](388320) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](388324) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"106","version":"1.0","params":{"AutoSocketSta":6},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](388356) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[1;33m[inf](388430) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388432) _iotx_linkkit_event_callback(239): Receive Message: {"id":102,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388449) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388455) _iotx_linkkit_event_callback(239): Receive Message: {"id":103,"code":200,"devid":0,"payload":{}}
+
+[0m[inf](388478) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](388492) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](388511) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](388537) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](388678) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388680) _iotx_linkkit_event_callback(239): Receive Message: {"id":104,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388696) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388702) _iotx_linkkit_event_callback(239): Receive Message: {"id":105,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388724) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](388730) _iotx_linkkit_event_callback(239): Receive Message: {"id":106,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](388985) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](388991) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/service/property/set_reply, Payload: {"id":"516873412","code":200,"data":{}}
+
+[0m[1;33m[inf](389013) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389153) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](389155) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"powerstate":1},"msgid":516873412}
+
+[0m[1;33m[inf](389177) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"107","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389206) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389260) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"108","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389312) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389316) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"109","version":"1.0","params":{"AutoSocketSta":7},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389347) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389462) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389467) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"110","version":"1.0","params":{"powerstate":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389487) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](389498) _iotx_linkkit_event_callback(239): Receive Message: {"id":107,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](389531) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389595) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389602) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"111","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389630) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389689) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389694) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"112","version":"1.0","params":{"cmdDown":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](389721) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](389724) _iotx_linkkit_event_callback(239): Receive Message: {"id":108,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](389747) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](389753) _iotx_linkkit_event_callback(239): Receive Message: {"id":109,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](389796) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389800) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389822) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389903) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](389943) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](389949) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/service/property/set_reply, Payload: {"id":"525069543","code":200,"data":{}}
+
+[0m[1;33m[inf](389971) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](389976) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](389985) _iotx_linkkit_event_callback(239): Receive Message: {"id":110,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390007) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390013) _iotx_linkkit_event_callback(239): Receive Message: {"id":111,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390035) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390041) _iotx_linkkit_event_callback(239): Receive Message: {"id":112,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390064) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](390069) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"cmdUp":1},"msgid":525069543}
+
+[0m[1;33m[inf](390097) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"113","version":"1.0","params":{"cmdUp":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](390124) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](390154) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"114","version":"1.0","params":{"AutoSocketSta":2},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](390224) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](390228) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"115","version":"1.0","params":{"cmdUp":1},"method":"thing.event.property.post"}[1;33m[inf](390251) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m
+
+[0m[1;33m[inf](390333) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](390337) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"116","version":"1.0","params":{"cmdDown":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](390357) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390369) _iotx_linkkit_event_callback(239): Receive Message: {"id":113,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390403) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](390453) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](390472) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](390588) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](390594) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390596) _iotx_linkkit_event_callback(239): Receive Message: {"id":114,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390617) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390623) _iotx_linkkit_event_callback(239): Receive Message: {"id":115,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](390645) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](390651) _iotx_linkkit_event_callback(239): Receive Message: {"id":116,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](392466) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](392472) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/service/property/set_reply, Payload: {"id":"544952464","code":200,"data":{}}
+
+[0m[1;33m[inf](392494) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](392497) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](392508) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"cmdDown":1},"msgid":544952464}
+
+[0m[1;33m[inf](392535) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"117","version":"1.0","params":{"cmdDown":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](392627) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](392738) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](392830) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](392832) _iotx_linkkit_event_callback(239): Receive Message: {"id":117,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](393656) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"118","version":"1.0","params":{"AutoSocketSta":4},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](393681) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](393685) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"119","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](393817) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](393824) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](393829) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"120","version":"1.0","params":{"AutoSocketSta":3},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](393854) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](393865) _iotx_linkkit_event_callback(239): Receive Message: {"id":118,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](393951) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](393955) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"121","version":"1.0","params":{"cmdUp":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](393978) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](394080) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](394089) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"122","version":"1.0","params":{"cmdDown":1},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](394104) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](394116) _iotx_linkkit_event_callback(239): Receive Message: {"id":119,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](394149) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](394198) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](394214) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0mj?8??[1;33m[inf](396785) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"123","version":"1.0","params":{"AutoSocketSta":5},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](396809) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](396813) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/0OxZRyu7rXouemEUHJV4/thing/event/property/post, Payload: {"id":"124","version":"1.0","params":{"cmdDown":0},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](396947) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](396955) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](397018) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](397020) _iotx_linkkit_event_callback(239): Receive Message: {"id":123,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](397076) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](397239) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](397241) _iotx_linkkit_event_callback(239): Receive Message: {"id":124,"code":200,"devid":0,"payload":{}}
+
+[0m[1;33m[inf](422886) iotx_mc_keepalive_sub(3015): send MQTT ping...
+
+[0m[1;33m[inf](422991) iotx_mc_cycle(1899): receive ping response!
+
+[0m[1;33m[inf](482967) iotx_mc_keepalive_sub(3015): send MQTT ping...
+
+[0m[1;33m[inf](483061) iotx_mc_cycle(1899): receive ping response!
+
+[0m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+¶¨Ê±
+
+
+
+[1;33m[inf](1405266) dm_msg_proc_thing_service_property_set(174): thing/service/property/set
+
+[0m[1;33m[inf](1405273) dm_msg_response(268): Send URI: /sys/a1yJAmJczNk/2C6PoSPldOKeOf5j0meH/thing/service/property/set_reply, Payload: {"id":"1463439418","code":200,"data":{}}
+
+[0m[1;33m[inf](1405296) dm_client_publish(187): Publish Result: 0
+
+[0m[1;33m[inf](1405317) _iotx_linkkit_event_callback(237): Receive Message Type: 15
+
+[0m[1;33m[inf](1405319) _iotx_linkkit_event_callback(239): Receive Message: {"devid":0,"payload":{"CountDownList":{"Target":"PowerSwitch","Contents":"PowerSwitch-1-1-5-1609308306"}},"msgid":1463439418}
+
+[0m[0;32mI (1405836) linkkit_example_solo: Property Set Received, Devid: 0, Request: {"CountDownList":{"Target":"PowerSwitch","Contents":"PowerSwitch-1-1-5-1609308306"}}[0m
+[0;32mI (1405855) linkkit_example_solo: timer_service_property_set[0m
+[1;33m[inf](1405379) timer_service_property_set(1517): timer_service_property_set
+
+[0m[1;33m[inf](1405390) timer_service_property_set(1552): ------------ hetianqi 789 ------------
+
+[0m[1;33m[inf](1405405) paraseContents(561): TS_target PowerSwitch  contents PowerSwitch-1-1-5-1609308306
+
+[0m[1;33m[inf](1405418) paraseContents(575): tag PowerSwitch-  ptr0=PowerSwitch-1-1-5-1609308306
+
+[0m[1;33m[inf](1405432) paraseContents(579): action 1 
+
+[0m[1;33m[inf](1405440) paraseContents(583): is_running 1 
+
+[0m[1;33m[inf](1405448) paraseContents(590): time_left 310090 
+
+[0m[1;33m[inf](1405457) paraseContents(591): duration 5 
+
+[0m[1;33m[inf](1405467) timer_service_event_check(1224): TS_offset 310086  uptime=1394  uptime_on_get_utc=11441
+
+[0m[1;33m[inf](1405481) timer_service_event_check(1247): is_running:1  time_left:310090  utc_week_second_offset:310086
+
+[0m[1;33m[inf](1405497) timer_service_event_check(1393): _sec_next_event=310090, TS_delay=4
+
+[0m[1;33m[inf](1405511) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/2C6PoSPldOKeOf5j0meH/thing/event/property/post, Payload: {"id":"34","version":"1.0","params":{"CountDownList":{"Target":"PowerSwitch","Contents":"PowerSwitch-1-1-5-1609308306"}},"method":"thing.event.property.post"}
+
+[0m[1;33m[inf](1405561) dm_client_publish(187): Publish Result: 0
+
+[0m[0;32mI (1406050) linkkit_example_solo: Post Property Message ID: 34[0m
+[1;33m[inf](1405701) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](1405771) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](1405774) _iotx_linkkit_event_callback(239): Receive Message: {"id":34,"code":200,"devid":0,"payload":{}}
+
+[0m[0;32mI (1406276) linkkit_example_solo: Message Post Reply Received, Message ID: 34, Code: 200, Reply: {}[0m
+[1;33m[inf](1409505) timer_service_event_check(1224): TS_offset 310090  uptime=1398  uptime_on_get_utc=11441
+
+[0m[1;33m[inf](1409508) timer_service_event_check(1247): is_running:1  time_left:310090  utc_week_second_offset:310090
+
+[0m[1;33m[inf](1409523) property_post(1061): property_post:{"PowerSwitch":1,"CountDownList":{"Target":"PowerSwitch","PowerSwitch":1,"Contents":""}}!
+
+[0m[1;33m[inf](1409541) property_post(1062): TS_post:{"PowerSwitch":1,"CountDownList":{"Target":"PowerSwitch","PowerSwitch":1,"Contents":""}}
+
+[0m[1;33m[inf](1409561) timer_service_event_check(1261): g_timer_service_cb
+
+[0m[1;33m[inf](1409573) dm_msg_request(212): DM Send Message, URI: /sys/a1yJAmJczNk/2C6PoSPldOKeOf5j0meH/thing/event/property/post, Payload: {"id":"35","version":"1.0","params":{"PowerSwitch":1,"CountDownList":{"Target":"PowerSwitch","PowerSwitch":1,"Contents":""}},"method":"thing.event.property.pos ...
+
+[0m[1;33m[inf](1409624) dm_client_publish(187): Publish Result: 0
+
+[0m[0;32mI (1410112) linkkit_example_solo: Property post Response: {"PowerSwitch":1,"CountDownList":{"Target":"PowerSwitch","PowerSwitch":1,"Contents":""}}[0m
+[0;32mI (1410129) linkkit_example_solo: timer_service_cb: property_name=PowerSwitch prop_idx=0[0m
+[0;32mI (1410142) auto_socket: auto_socket_set_SocketPowerState, state:1, socket_sta:1[0m
+[0;32mI (1410154) linkkit_example_solo: timer_service_cb: int_value=1[0m
+[1;33m[inf](1409679) timer_service_event_check(1393): _sec_next_event=-1, TS_delay=-310091
+
+[0m[1;33m[inf](1409774) dm_msg_proc_thing_event_post_reply(334): Event Id: property
+
+[0m[1;33m[inf](1409807) _iotx_linkkit_event_callback(237): Receive Message Type: 32
+
+[0m[1;33m[inf](1409809) _iotx_linkkit_event_callback(239): Receive Message: {"id":35,"code":200,"devid":0,"payload":{}}
+
+[0m[0;32mI (1410313) linkkit_example_solo: Message Post Reply Received, Message ID: 35, Code: 200, Reply: {}[0m
